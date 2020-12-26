@@ -22,17 +22,19 @@
 
 <script>
 export default {
-inject: ['increment_cart','decrement_cart'],
+//inject: ['increment_cart','decrement_cart'],
  props: {
      item:Object
  },
 
  methods: {
      increment() {
-      this.increment_cart(this.item.index_initial);
+     // this.increment_cart(this.item.index_initial);
+      this.$store.dispatch('cart/increment_cart',{index:this.item.index_initial});
     },
     decrement() {
-      this.decrement_cart(this.item.index_initial);
+      //this.decrement_cart(this.item.index_initial);
+      this.$store.dispatch('cart/decrement_cart',{index:this.item.index_initial});
     },
  }
 }
