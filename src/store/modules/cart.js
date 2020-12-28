@@ -38,13 +38,27 @@ export default {
             var productInCartIndex = state.cartItems.findIndex(
                 (cartItem) => cartItem.index_initial === index
             );
-            if (state.cartItems[productInCartIndex].quantity === 1) {
-                alert("Negative quantity not allowed");
-            } else {
-                state.cartItems[productInCartIndex].quantity--;
-                state.cartItems[productInCartIndex].price =
-                    state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
-            }
+
+            state.cartItems[productInCartIndex].quantity--;
+            state.cartItems[productInCartIndex].price =
+                state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
+
+        },
+        inc_decr_qte(state, payload) {
+            const index = payload.index;
+            var productInCartIndex = state.cartItems.findIndex(
+                (cartItem) => cartItem.index_initial === index
+            );
+            state.cartItems[productInCartIndex].quantity = payload.qte;
+            state.cartItems[productInCartIndex].price = state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
+        },
+        check_qte: function(state, payload) {
+            const index = payload.index;
+            var productInCartIndex = state.cartItems.findIndex(
+                (cartItem) => cartItem.index_initial === index
+            );
+            state.cartItems[productInCartIndex].quantity = 1;
+            state.cartItems[productInCartIndex].price = state.cartItems[productInCartIndex].prix_initial;
         }
     },
     actions: {
@@ -56,6 +70,12 @@ export default {
         },
         decrement_cart(context, payload) {
             context.commit('decrement_cart', payload);
+        },
+        inc_decr_qte(context, payload) {
+            context.commit('inc_decr_qte', payload);
+        },
+        check_qte(context, payload) {
+            context.commit('check_qte', payload);
         }
     },
     getters: {

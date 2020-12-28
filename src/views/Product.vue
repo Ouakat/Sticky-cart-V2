@@ -64,9 +64,9 @@
                   </div>
 
                   <div class="quantity-toggle">
-                    <button @click="decrement()">&mdash;</button>
+                    <button @click="decrement()" :disabled="validated(product.quantity) ? false : true"><i class="fa fa-minus" aria-hidden="true"></i></button>
                     <input type="text" v-model="product.quantity" />
-                    <button @click="increment()">&#xff0b;</button>
+                    <button @click="increment()"><i class="fa fa-plus" aria-hidden="true"></i></button>
                   </div>
 
                   <div class="price">
@@ -220,6 +220,16 @@ export default {
       return this.$store.getters["cart/total"];
     }
   },
+  watch: {
+        "product.quantity": function(oldVal, newVal) {
+           if(newVal<1 || oldVal<1 || oldVal===0 || !this.validQte(oldVal) || !this.validQte(newVal)){
+               this.$store.dispatch('prod/check_qte');
+           }else{
+             this.$store.dispatch('prod/inc_decr_qte',{qte:this.product.quantity});
+           }
+          
+        }
+  },
   methods: {
     UpdatePrice(index){
        this.$store.dispatch('prod/UpdatePrice',{i:index});
@@ -239,6 +249,16 @@ export default {
     },
     closeCart(){
       this.$store.dispatch('closeCart');
+    },
+    validQte: function (qte) {
+      var re = /^\d+$/;
+      return re.test(qte);
+    },
+    validated: function(qte){
+        if(qte === 1){
+           return false;
+        }
+        return true;
     }
   }
 };

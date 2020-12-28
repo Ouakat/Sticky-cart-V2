@@ -42,11 +42,11 @@ export default {
         UpdatePrice: function(state, payload) {
             //console.log(i);
             const i = payload.i;
-            state.product.price = state.product.colors[i].price * state.product.quantity;
+            state.product.price = state.product.colors[i].price;
             state.product.src_initial = state.product.images[i].src;
             state.product.prix_initial = state.product.colors[i].price;
             state.product.index_initial = i;
-            state.product.quantity = 1;
+            //state.product.quantity = 1;
             // console.log(this.cartItems);
         },
         increment(state) {
@@ -54,12 +54,16 @@ export default {
             state.product.price = state.product.prix_initial * state.product.quantity;
         },
         decrement(state) {
-            if (state.product.quantity === 1) {
-                alert("Negative quantity not allowed");
-            } else {
-                state.product.quantity--;
-                state.product.price = state.product.prix_initial * state.product.quantity;
-            }
+            state.product.quantity--;
+            state.product.price = state.product.prix_initial * state.product.quantity;
+        },
+        inc_decr_qte(state, payload) {
+            state.product.quantity = payload.qte;
+            state.product.price = state.product.prix_initial * state.product.quantity;
+        },
+        check_qte(state) {
+            state.product.quantity = 1;
+            state.product.price = state.product.prix_initial;
         }
     },
     actions: {
@@ -71,6 +75,12 @@ export default {
         },
         decrement(context, payload) {
             context.commit('decrement', payload);
+        },
+        inc_decr_qte(context, payload) {
+            context.commit('inc_decr_qte', payload);
+        },
+        check_qte(context, payload) {
+            context.commit('check_qte', payload);
         }
     },
     getters: {
