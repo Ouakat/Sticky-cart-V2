@@ -70,8 +70,8 @@
                   </div>
 
                   <div class="price">
-                    <span class="real">${{ product.price - 20 }}</span
-                    ><span class="promo">${{ product.price }}</span>
+                    <span class="real">${{ price() }}</span
+                    ><span class="promo">${{ product.prix_initial * product.quantity}}</span>
                   </div>
 
                   <div class="action">
@@ -242,6 +242,15 @@ export default {
     addToCart(){
       this.$store.dispatch('cart/addToCart',{product:this.product});
       this.$store.dispatch('showCart');
+    },
+    price(){
+      if(this.product.price=== this.product.prix_initial){
+        this.product.price=this.product.prix_initial - (this.product.prix_initial * (this.product.promotion / 100));
+      }
+      return this.product.price;
+    },
+    price_inicial(){
+      this.$store.dispatch('prod/price_inicial');
     },
     increment(){
       this.$store.dispatch('prod/increment');

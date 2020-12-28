@@ -7,6 +7,7 @@ export default {
                 price: 35,
                 quantity: 1,
                 prix_initial: 35,
+                promotion: 5,
                 index_initial: 0,
                 src_initial: "https://i.pinimg.com/originals/bd/ef/cb/bdefcbc72735f64db17f3250b1e64245.png",
                 images: [{
@@ -42,7 +43,8 @@ export default {
         UpdatePrice: function(state, payload) {
             //console.log(i);
             const i = payload.i;
-            state.product.price = state.product.colors[i].price;
+            const pricepromo = state.product.colors[i].price - (state.product.colors[i].price * (state.product.promotion / 100));
+            state.product.price = pricepromo;
             state.product.src_initial = state.product.images[i].src;
             state.product.prix_initial = state.product.colors[i].price;
             state.product.index_initial = i;
@@ -51,19 +53,23 @@ export default {
         },
         increment(state) {
             state.product.quantity++;
-            state.product.price = state.product.prix_initial * state.product.quantity;
+            const pricepromo = state.product.prix_initial - (state.product.prix_initial * (state.product.promotion / 100));
+            state.product.price = pricepromo * state.product.quantity;
         },
         decrement(state) {
             state.product.quantity--;
-            state.product.price = state.product.prix_initial * state.product.quantity;
+            const pricepromo = state.product.prix_initial - (state.product.prix_initial * (state.product.promotion / 100));
+            state.product.price = pricepromo * state.product.quantity;
         },
         inc_decr_qte(state, payload) {
             state.product.quantity = parseInt(payload.qte);
-            state.product.price = state.product.prix_initial * state.product.quantity;
+            const pricepromo = state.product.prix_initial - (state.product.prix_initial * (state.product.promotion / 100));
+            state.product.price = pricepromo * state.product.quantity;
         },
         check_qte(state) {
             state.product.quantity = 1;
-            state.product.price = state.product.prix_initial;
+            const pricepromo = state.product.prix_initial - (state.product.prix_initial * (state.product.promotion / 100));
+            state.product.price = pricepromo;
         }
     },
     actions: {
