@@ -46,7 +46,7 @@ export default {
             state.product.src_initial = state.product.images[i].src;
             state.product.prix_initial = state.product.colors[i].price;
             state.product.index_initial = i;
-            //state.product.quantity = 1;
+            state.product.quantity = 1;
             // console.log(this.cartItems);
         },
         increment(state) {

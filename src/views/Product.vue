@@ -185,7 +185,7 @@
       </div>
       <div class="shopping-cart-btn text-center">
         <a
-          class="default-btn btn btn-success"
+          class=" btn btn-success"
           href="https://marketplace.coopmaroc.com/panier"
           >Continuer to Checkout</a
         >
