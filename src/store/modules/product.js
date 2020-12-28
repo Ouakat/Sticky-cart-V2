@@ -58,7 +58,7 @@ export default {
             state.product.price = state.product.prix_initial * state.product.quantity;
         },
         inc_decr_qte(state, payload) {
-            state.product.quantity = payload.qte;
+            state.product.quantity = parseInt(payload.qte);
             state.product.price = state.product.prix_initial * state.product.quantity;
         },
         check_qte(state) {

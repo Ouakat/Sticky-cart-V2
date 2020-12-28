@@ -24,6 +24,10 @@ export default {
             // state.$store.state.showCart = true;
 
         },
+        deleteCart(state, payload) {
+            const cart = payload.product;
+            state.cartItems.splice(state.cartItems.indexOf(cart), 1);
+        },
         increment_cart: function(state, payload) {
             const index = payload.index;
             var productInCartIndex = state.cartItems.findIndex(
@@ -49,7 +53,7 @@ export default {
             var productInCartIndex = state.cartItems.findIndex(
                 (cartItem) => cartItem.index_initial === index
             );
-            state.cartItems[productInCartIndex].quantity = payload.qte;
+            state.cartItems[productInCartIndex].quantity = parseInt(payload.qte);
             state.cartItems[productInCartIndex].price = state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
         },
         check_qte: function(state, payload) {
@@ -64,6 +68,9 @@ export default {
     actions: {
         addToCart(context, payload) {
             context.commit('addToCart', payload);
+        },
+        deleteCart(context, payload) {
+            context.commit('deleteCart', payload);
         },
         increment_cart(context, payload) {
             context.commit('increment_cart', payload);

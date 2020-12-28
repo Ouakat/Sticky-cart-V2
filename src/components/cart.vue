@@ -13,8 +13,8 @@
                 <div class="price-cart">
                     <span class="real">${{product.price-20}}</span><span class="promo">${{product.price}}</span>
                 </div>
+                <div class="shopping-cart-delete" @click="deleteCart"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></div>
             </div>
-
         </div>
     </li>
   <!--end cart-->
@@ -41,6 +41,9 @@ export default {
         }
   },
  methods: {
+    deleteCart(){
+       this.$store.dispatch('cart/deleteCart',{product:this.item});
+    },
      increment() {
      // this.increment_cart(this.item.index_initial);
       this.$store.dispatch('cart/increment_cart',{index:this.item.index_initial});

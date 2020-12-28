@@ -290,6 +290,41 @@ html input[disabled] {
     margin-left: 20px;
 }
 
+.shopping-cart-delete a {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    color: #888;
+    font-size: 18px;
+}
+
+.shopping-cart-title h4 {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.cart-body .single-shopping-cart:last-child {
+    border-bottom: none;
+}
+
+.shopping-cart-title h4 a {
+    display: block;
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 20px;
+    color: #253237;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.shopping-cart-vide p {
+    padding: 20px;
+    font-size: 16px;
+}
+
 .add-to-cart,
 .like {
     padding: 1.2em 1.5em;

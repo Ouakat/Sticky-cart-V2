@@ -7,7 +7,7 @@
   <router-view/>
 </template>
 <script>
-import Theheader from "@/views/layout/header.vue";
+import Theheader from "@/components/layout/header.vue";
 export default {
   components: {
     Theheader,

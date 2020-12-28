@@ -171,11 +171,16 @@
       <span @click="closeCart()" class="close">X</span>
     </div>
     <ul class="cart-body">
-      <cart
+      <div v-if="card_items()">
+      <cart 
         v-for="(item) in cartItems"
         :key="item.index_initial"
         :item="item"
       ></cart>
+      </div>
+       <div class="text-center shopping-cart-vide" v-else>
+         <p>Your cart is empty</p>
+       </div>
     </ul>
     <div class="cart-footer">
       <div class="shopping-cart-total">
@@ -197,7 +202,7 @@
 
 <script>
 // @ is an alias to /src
-import cart from "@/views/cart.vue";
+import cart from "@/components/cart.vue";
 
 export default {
   name: "Home",
@@ -249,6 +254,12 @@ export default {
     },
     closeCart(){
       this.$store.dispatch('closeCart');
+    },
+    card_items(){
+      if(this.cartItems.length ===0){
+          return false
+      }
+      return true;
     },
     validQte: function (qte) {
       var re = /^\d+$/;
