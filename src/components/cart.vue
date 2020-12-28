@@ -11,7 +11,7 @@
                 <input type="text" v-model="product.quantity">
                 <button @click="increment"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 <div class="price-cart">
-                    <span class="real">${{product.price-20}}</span><span class="promo">${{product.price}}</span>
+                    <span class="real">${{product.price}}</span><span class="promo">${{product.prix_initial * product.quantity}}</span>
                 </div>
                 <div class="shopping-cart-delete" @click="deleteCart"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></div>
             </div>

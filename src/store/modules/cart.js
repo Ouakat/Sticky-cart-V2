@@ -92,7 +92,8 @@ export default {
         total(state) {
             let total = 0;
             state.cartItems.forEach((item) => {
-                total += item.prix_initial * item.quantity - 20;
+                const pricepromo = item.prix_initial - (item.prix_initial * (item.promotion / 100));
+                total += pricepromo * item.quantity;
             });
             return total;
         }
