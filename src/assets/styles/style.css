@@ -707,7 +707,7 @@ fieldset {
     top: 0px;
     left: 0px;
     width: 330px;
-    height: auto;
+    height: 310px;
 }
 
 .images-view-wrap {
@@ -770,5 +770,6 @@ fieldset {
 @media screen and (max-width: 768px) {
     .pic0 {
         width: 250px;
+        height: auto;
     }
 }
