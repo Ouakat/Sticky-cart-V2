@@ -191,7 +191,7 @@
         </h4>
       </div>
       <div class="shopping-cart-btn text-center">
-        <a class="add-to-cart btn btn-success" href="https://marketplace.coopmaroc.com/panier">Continuer to Checkout</a>
+        <a class="add-to-cart btn btn-success" href="#">Continuer to Checkout</a>
       </div>
     </div>
   </div>
