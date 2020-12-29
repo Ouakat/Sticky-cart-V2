@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state() {
         return {
-            activeIndex: null,
+            activeIndex: 0,
             product: {
                 name: "Mens heavyweight 6.1-Ounce Cotton shirt,100% Cotton,Big And All Sizes",
                 price: 35,

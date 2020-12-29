@@ -241,9 +241,6 @@ export default {
        this.$store.dispatch('prod/activeIndex',{index:index});
     },
     isActive(index){
-      if(this.activeIndex === null){
-        this.$store.dispatch('prod/activeIndex',{index:0});
-      }
        if(this.activeIndex === index){
          return true;
        }
