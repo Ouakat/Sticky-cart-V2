@@ -14,6 +14,7 @@
 button[disabled],
 html input[disabled] {
     cursor: not-allowed !important;
+    color: #d2d2d2 !important;
 }
 
 .product {
@@ -32,6 +33,7 @@ html input[disabled] {
 
 .product-title {
     font-size: 20px;
+    line-height: 25px;
 }
 
 .product-desc {
@@ -82,6 +84,11 @@ html input[disabled] {
     padding-left: 0px;
     padding-right: 0px;
     max-width: 100%;
+}
+
+.quantity-title {
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 
@@ -205,10 +212,6 @@ html input[disabled] {
     line-height: 1.5em;
 }
 
-.price {
-    margin-top: 10px;
-}
-
 .promo {
     margin-left: 10px;
     text-decoration: line-through;
@@ -237,7 +240,12 @@ html input[disabled] {
 }
 
 .colors {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+.colors .text-color {
+    text-transform: initial;
+    margin-bottom: 5px;
 }
 
 .colors span {
@@ -286,10 +294,6 @@ html input[disabled] {
     border-radius: 2px;
 }
 
-.color:first-of-type {
-    margin-left: 20px;
-}
-
 .shopping-cart-delete a {
     display: block;
     position: absolute;
@@ -302,6 +306,10 @@ html input[disabled] {
 .shopping-cart-title h4 {
     margin-top: 0px;
     margin-bottom: 20px;
+}
+
+.shopping-cart-title input {
+    width: 22px !important;
 }
 
 .cart-body .single-shopping-cart:last-child {
@@ -334,6 +342,7 @@ html input[disabled] {
     color: #fff;
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
+    border-radius: 30px;
 }
 
 .add-to-cart:hover,
@@ -358,7 +367,30 @@ html input[disabled] {
 }
 
 .quantity-toggle {
-    display: flex;
+    width: 80px;
+    float: left;
+    display: inline-block;
+    position: relative;
+}
+
+.next-input-group {
+    display: inline-table;
+    border-collapse: separate;
+    border-spacing: 0;
+    line-height: 0;
+    width: 100%;
+}
+
+.next-input-group-addon {
+    width: 1px;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.input-number {
+    height: 36px;
+    width: 100%;
 }
 
 .price-cart {
@@ -367,20 +399,30 @@ html input[disabled] {
 
 .quantity-toggle button {
     border: 2px solid #ddd;
-    padding: .5rem;
-    background: #f5f5f5;
+    background: #f5f5f5fc;
     color: #888;
     font-size: 1rem;
     cursor: pointer;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
 }
 
 .quantity-toggle input {
     border: 0;
-    border-top: 2px solid #ddd;
-    border-bottom: 2px solid #ddd;
     text-align: center;
-    padding: 0 .5rem;
-    width: 10%;
+    padding: 4px;
+    width: 100%;
+}
+
+.price {
+    margin-left: 40px;
+    float: left;
+    margin-bottom: 0;
+}
+
+.product-quantity {
+    margin-bottom: 30px;
 }
 
 .mini-cart-content.cart-visible {
@@ -395,7 +437,7 @@ html input[disabled] {
 .cart-footer {
     padding: .75rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, .03);
+    background-color: rgb(0 0 0 / 16%);
 }
 
 .card-header h3 {
@@ -451,7 +493,7 @@ html input[disabled] {
 }
 
 .shopping-cart-total {
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .select::before {
@@ -470,7 +512,7 @@ html input[disabled] {
     color: #253237;
     font-size: 16px;
     text-transform: capitalize;
-    line-height: 25px;
+    line-height: 12px;
 }
 
 .shopping-cart-btn a {
@@ -633,5 +675,95 @@ ul {
         opacity: 1;
         -webkit-transform: scale(1);
         transform: scale(1);
+    }
+}
+
+.card-gallery {
+    margin: auto;
+    padding: 20px;
+    padding-top: 0;
+    border-radius: 15px;
+}
+
+fieldset.active {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+}
+
+fieldset {
+    display: none
+}
+
+.pic0 {
+    top: 0px;
+    left: 0px;
+    width: 330px;
+    height: auto;
+}
+
+.images-view-wrap {
+    width: 100%;
+}
+
+.images-view-wrap .images-view-list {
+    background-color: #fff;
+    padding: 0;
+    margin: 15px 0 20px;
+    list-style-type: none;
+    text-align: center;
+}
+
+.images-view-wrap .images-view-list li {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 11px;
+}
+
+.images-view-wrap .images-view-list li:last-child {
+    margin-right: 0;
+}
+
+.product-pic {
+    position: relative;
+    width: 320px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.thumbnails {
+    position: absolute
+}
+
+.fit-image {
+    width: 100%;
+    object-fit: cover
+}
+
+.tb {
+    width: 62px;
+    height: 62px;
+    border: 1px solid grey;
+    margin: 2px;
+    opacity: 0.4;
+    cursor: pointer
+}
+
+.tb-active {
+    opacity: 1
+}
+
+.thumbnail-img {
+    width: 60px;
+    height: 60px
+}
+
+@media screen and (max-width: 768px) {
+    .pic0 {
+        width: 250px;
     }
 }

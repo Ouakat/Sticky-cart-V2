@@ -6,31 +6,25 @@
           <div class="card">
             <div class="container-fliud">
               <div class="wrapper row">
-                <div class="preview col-md-6">
-                  <div class="preview-pic tab-content">
-                    <div
-                      v-for="(img, index) in product.images"
-                      :key="index"
-                      class="tab-pane"
-                      :class="index == 0 ? 'active' : ''"
-                      :id="'pic-'.index"
-                    >
-                      <img :src="index == 0 ? product.src_initial : img.src" />
+                <div class="preview col-md-5">
+                  <!--Product images-->
+                    <div class="row justify-content-center">
+                      <div class="card-gallery">
+                          <fieldset  v-for="(img, index) in product.images" :key="index" :id="'f'+index+'1'" :class="index == 0 ? 'active' : ''">
+                               <img class="pic0" :src="index == 0 ? product.src_initial : img.src"> 
+                          </fieldset>
+                           <div class="images-view-wrap">
+                             <ul class="images-view-list">
+                                <li  v-for="(img, index) in product.images" :key="index" class="tb" :class="index == 0 ? 'tb-active' : ''" :id="'f'.index"> 
+                                   <img class="thumbnail-img fit-image" :src="img.src"> 
+                                </li>
+                             </ul>
+                          </div>
+                      </div>
                     </div>
-                  </div>
-                  <ul class="preview-thumbnail nav nav-tabs">
-                    <li
-                      v-for="(img, index) in product.images"
-                      :key="index"
-                      :class="index == 0 ? 'active' : ''"
-                    >
-                      <a :data-target="'#pic-' + index" data-toggle="tab"
-                        ><img :src="img.src"
-                      /></a>
-                    </li>
-                  </ul>
+                  <!--/ Product images-->
                 </div>
-                <div class="details col-md-6">
+                <div class="details col-md-7">
                   <h3 class="product-title">{{ product.name }}</h3>
                   <div class="rating">
                     <div class="stars">
@@ -49,7 +43,7 @@
                   </p>
 
                   <div class="colors">
-                    colors:
+                   <div class="text-color"> Color: </div>
                     <span
                       v-for="(c, index) in product.colors"
                       :key="index"
@@ -62,18 +56,26 @@
                     ></span>
                     <input type="hidden" v-model="product.index_initial" />
                   </div>
-
-                  <div class="quantity-toggle">
-                    <button @click="decrement()" :disabled="validated(product.quantity) ? false : true"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                    <input type="text" v-model="product.quantity" />
-                    <button @click="increment()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                  </div>
-
-                  <div class="price">
-                    <span class="real">${{ price() }}</span
-                    ><span class="promo">${{ product.prix_initial * product.quantity}}</span>
-                  </div>
-
+                  <div class="product-quantity clearfix">
+                      <div class="quantity-title">Quantity:</div>
+                      <div class="quantity-toggle">
+                        <span class="next-input-group">
+                          <span class="next-input-group-addon">
+                            <button @click="decrement()" :disabled="validated(product.quantity) ? false : true"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                          </span>
+                          <span class="input-number">
+                            <input type="text" v-model="product.quantity" />
+                          </span>
+                          <span class="next-input-group-addon">
+                            <button @click="increment()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </span>
+                        </span>
+                      </div>
+                      <div class="price">
+                        <span class="real">${{ price() }}</span
+                        ><span class="promo">${{ product.prix_initial * product.quantity}}</span>
+                      </div>
+                 </div>
                   <div class="action">
                     <button
                       class="add-to-cart btn btn-success btn-bg"
@@ -189,11 +191,7 @@
         </h4>
       </div>
       <div class="shopping-cart-btn text-center">
-        <a
-          class=" btn btn-success"
-          href="https://marketplace.coopmaroc.com/panier"
-          >Continuer to Checkout</a
-        >
+        <a class="add-to-cart btn btn-success" href="https://marketplace.coopmaroc.com/panier">Continuer to Checkout</a>
       </div>
     </div>
   </div>

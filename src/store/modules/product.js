@@ -3,7 +3,7 @@ export default {
     state() {
         return {
             product: {
-                name: "Mens heavyweight 6.1-Ounce Cotton shirt",
+                name: "Mens heavyweight 6.1-Ounce Cotton shirt,100% Cotton,Big And All Sizes",
                 price: 35,
                 quantity: 1,
                 prix_initial: 35,
@@ -49,7 +49,7 @@ export default {
             state.product.prix_initial = state.product.colors[i].price;
             state.product.index_initial = i;
             state.product.quantity = 1;
-            // console.log(this.cartItems);
+            console.log(this.cartItems);
         },
         increment(state) {
             state.product.quantity++;

@@ -2,19 +2,28 @@
   <!-- Cart-->
     <li class="single-shopping-cart">
         <div class="shopping-cart-img">
-            <a href="#"><img :src="product.src_initial" :alt="product.name"></a>
+            <a href="#"><img :src="prod.src_initial" :alt="prod.name"></a>
         </div>
         <div class="shopping-cart-title">
-            <h4><a href="#">{{product.name}}</a></h4> 
+            <h4><a href="#">{{prod.name}}</a></h4> 
             <div class="quantity-toggle">
-                <button @click="decrement" :disabled="validated(product.quantity) ? false : true"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                <input type="text" v-model="product.quantity">
-                <button @click="increment"><i class="fa fa-plus" aria-hidden="true"></i></button>
+               <span class="next-input-group">
+                 <span class="next-input-group-addon">
+                   <button @click="decrement" :disabled="validated(prod.quantity) ? false : true"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                 </span>
+                  <span class="input-number">
+                    <input type="text" v-model="prod.quantity">
+                 </span>
+                 <span class="next-input-group-addon">
+                   <button @click="increment"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
                 <div class="price-cart">
-                    <span class="real">${{product.price}}</span><span class="promo">${{product.prix_initial * product.quantity}}</span>
+                    <span class="real">${{ price() }}</span>
+                    <span class="promo">${{prod.prix_initial * prod.quantity}}</span>
                 </div>
-                <div class="shopping-cart-delete" @click="deleteCart"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></div>
+              </span>
             </div>
+            <div class="shopping-cart-delete" @click="deleteCart"><a href="#"><i class="fa fa-times" aria-hidden="true"></i></a></div>
         </div>
     </li>
   <!--end cart-->
@@ -28,7 +37,7 @@ export default {
  },
  data() {
          return {
-            product: this.item
+            prod: this.item
          }
       },
  watch: {
@@ -41,6 +50,10 @@ export default {
         }
   },
  methods: {
+   price(){
+     const pricepromo = this.prod.prix_initial - (this.prod.prix_initial * (this.prod.promotion / 100));
+      return pricepromo*this.prod.quantity;
+    },
     deleteCart(){
        this.$store.dispatch('cart/deleteCart',{product:this.item});
     },

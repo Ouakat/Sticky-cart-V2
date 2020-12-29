@@ -12,7 +12,7 @@ export default {
             const products = payload.product;
             let itemInCart = state.cartItems.filter(item => item.index_initial === products.index_initial);
             let isItemInCart = itemInCart.length > 0;
-            console.log(products);
+            // console.log(products);
 
             if (isItemInCart === false) {
                 state.cartItems.push(JSON.parse(JSON.stringify(products)));
@@ -34,8 +34,9 @@ export default {
                 (cartItem) => cartItem.index_initial === index
             );
             state.cartItems[productInCartIndex].quantity++;
-            state.cartItems[productInCartIndex].price =
-                state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
+            const pricepromo = state.cartItems[productInCartIndex].prix_initial - (state.cartItems[productInCartIndex].prix_initial * (state.cartItems[productInCartIndex].promotion / 100));
+            state.cartItems[productInCartIndex].price = pricepromo * state.cartItems[productInCartIndex].quantity;
+            //console.log(state.cartItems[productInCartIndex]);
         },
         decrement_cart: function(state, payload) {
             const index = payload.index;
@@ -44,8 +45,8 @@ export default {
             );
 
             state.cartItems[productInCartIndex].quantity--;
-            state.cartItems[productInCartIndex].price =
-                state.cartItems[productInCartIndex].prix_initial * state.cartItems[productInCartIndex].quantity;
+            const pricepromo = state.cartItems[productInCartIndex].prix_initial - (state.cartItems[productInCartIndex].prix_initial * (state.cartItems[productInCartIndex].promotion / 100));
+            state.cartItems[productInCartIndex].price = pricepromo * state.cartItems[productInCartIndex].quantity;
 
         },
         inc_decr_qte(state, payload) {
@@ -62,7 +63,8 @@ export default {
                 (cartItem) => cartItem.index_initial === index
             );
             state.cartItems[productInCartIndex].quantity = 1;
-            state.cartItems[productInCartIndex].price = state.cartItems[productInCartIndex].prix_initial;
+            const pricepromo = state.cartItems[productInCartIndex].prix_initial - (state.cartItems[productInCartIndex].prix_initial * (state.cartItems[productInCartIndex].promotion / 100));
+            state.cartItems[productInCartIndex].price = pricepromo;
         }
     },
     actions: {
