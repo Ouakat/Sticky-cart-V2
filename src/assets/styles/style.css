@@ -652,6 +652,11 @@ ul {
     padding: 1.3em;
 }
 
+input:focus,
+button:focus {
+    outline: inherit !important;
+}
+
 @-webkit-keyframes opacity {
     0% {
         opacity: 0;
@@ -753,7 +758,7 @@ fieldset {
     cursor: pointer
 }
 
-.tb-active {
+.tb_active {
     opacity: 1
 }
 

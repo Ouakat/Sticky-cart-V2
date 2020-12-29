@@ -2,6 +2,7 @@ export default {
     namespaced: true,
     state() {
         return {
+            activeIndex: null,
             product: {
                 name: "Mens heavyweight 6.1-Ounce Cotton shirt,100% Cotton,Big And All Sizes",
                 price: 35,
@@ -40,6 +41,9 @@ export default {
         };
     },
     mutations: {
+        activeIndex(state, payload) {
+            state.activeIndex = payload.index;
+        },
         UpdatePrice: function(state, payload) {
             //console.log(i);
             const i = payload.i;
@@ -73,6 +77,9 @@ export default {
         }
     },
     actions: {
+        activeIndex(context, payload) {
+            context.commit('activeIndex', payload);
+        },
         UpdatePrice(context, payload) {
             context.commit('UpdatePrice', payload);
         },
@@ -92,6 +99,9 @@ export default {
     getters: {
         product(state) {
             return state.product;
+        },
+        activeIndex(state) {
+            return state.activeIndex;
         }
     }
 };

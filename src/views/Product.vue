@@ -10,12 +10,12 @@
                   <!--Product images-->
                     <div class="row justify-content-center">
                       <div class="card-gallery">
-                          <fieldset  v-for="(img, index) in product.images" :key="index" :id="'f'+index+'1'" :class="index == 0 ? 'active' : ''">
+                          <fieldset  v-for="(img, index) in product.images" :key="index" :id="'f'+index+'1'" :class="{ active: isActive(index) }">
                                <img class="pic0" :src="index == 0 ? product.src_initial : img.src"> 
                           </fieldset>
                            <div class="images-view-wrap">
                              <ul class="images-view-list">
-                                <li  v-for="(img, index) in product.images" :key="index" class="tb" :class="index == 0 ? 'tb-active' : ''" :id="'f'.index"> 
+                                <li  v-for="(img, index) in product.images" :key="index" @click="toggleActive(index)" class="tb" :class="{ tb_active: isActive(index) }" :id="'f'.index"> 
                                    <img class="thumbnail-img fit-image" :src="img.src"> 
                                 </li>
                              </ul>
@@ -52,7 +52,7 @@
                         c.name,
                         { select: index == product.index_initial },
                       ]"
-                      @click="UpdatePrice(index)"
+                      @click="UpdatePrice(index),toggleActive(index)"
                     ></span>
                     <input type="hidden" v-model="product.index_initial" />
                   </div>
@@ -216,6 +216,9 @@ export default {
     product(){
       return this.$store.getters["prod/product"];
     },
+    activeIndex(){
+      return this.$store.getters["prod/activeIndex"];
+    },
     cartItems(){
       return this.$store.getters["cart/products"];
     },
@@ -234,6 +237,18 @@ export default {
         }
   },
   methods: {
+    toggleActive(index) {
+       this.$store.dispatch('prod/activeIndex',{index:index});
+    },
+    isActive(index){
+      if(this.activeIndex === null){
+        this.$store.dispatch('prod/activeIndex',{index:0});
+      }
+       if(this.activeIndex === index){
+         return true;
+       }
+       return false;
+    },
     UpdatePrice(index){
        this.$store.dispatch('prod/UpdatePrice',{i:index});
     },
