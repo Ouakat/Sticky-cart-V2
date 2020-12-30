@@ -492,6 +492,20 @@ html input[disabled] {
     overflow: hidden;
 }
 
+.list-enter-active,
+.list-leave-active {
+    transition: all 1s;
+}
+
+.list-enter,
+.list-leave-to
+/* .list-leave-active below version 2.1.8 */
+
+{
+    opacity: 0;
+    transform: translateY(30px);
+}
+
 .shopping-cart-total {
     margin: 15px 0;
 }
@@ -771,5 +785,11 @@ fieldset {
     .pic0 {
         width: 100%;
         height: auto;
+    }
+    .card {
+        padding: 1em;
+    }
+    .mini-cart-content {
+        width: 100%;
     }
 }

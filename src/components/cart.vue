@@ -1,6 +1,6 @@
 <template>
   <!-- Cart-->
-    <li class="single-shopping-cart">
+    <li class="single-shopping-cart list-item">
         <div class="shopping-cart-img">
             <a href="#"><img :src="prod.src_initial" :alt="prod.name"></a>
         </div>

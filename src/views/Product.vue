@@ -11,7 +11,7 @@
                     <div class="row justify-content-center">
                       <div class="card-gallery">
                           <fieldset  v-for="(img, index) in product.images" :key="index" :id="'f'+index+'1'" :class="{ active: isActive(index) }">
-                               <img class="pic0" :src="index == 0 ? product.src_initial : img.src"> 
+                               <img class="pic0" :src="img.src"> 
                           </fieldset>
                            <div class="images-view-wrap">
                              <ul class="images-view-list">
